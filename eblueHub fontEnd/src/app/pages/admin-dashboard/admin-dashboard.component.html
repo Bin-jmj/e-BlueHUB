@@ -1,0 +1,258 @@
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">e Blue Hub</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="home"></span>
+                  Admin Dashboard<span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
+                  Orders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Products
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  Customers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrations
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Saved reports</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Current month
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Last quarter
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Social engagement
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Year-end sale
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Deep Oceans</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+              </button>
+            </div>
+          </div>
+          
+          <!-- table start here -->
+          <div class="container-lg" id="main-container">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-8"><h2>Species <b>Details</b></h2></div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-info add-new"><i class="material-icons"></i> Add New</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                              <th>Sn</th>
+                              <th>LocalName</th>
+                              <th>ScientificName</th>
+                              <th>Color</th>
+                              <th>LifeSpan</th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                             <tr *ngFor="let spec of species">
+                                <td>{{spec.id}}</td>
+                                <td>{{spec.speciesName}}</td>
+                                <td>{{spec.speciesScientificName}}</td>
+                                <td>{{spec.speciesColor}}</td>
+                                <td>{{spec.speciesLifeSpan}}</td>
+                                <td>
+                                    <!-- <a (click)="onOpenModal(spec,'add')" class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a> -->
+                                    <a (click)="onOpenModal(spec,'edit')" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a (click)="onOpenModal(spec,'delete')" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    <!-- <button type="button" class="btn btn-info add-new" (click)="onOpenModal(spec,'add')"><i class="fa fa-plus"></i></button> -->
+                                </td>
+                            </tr>
+                         </tbody>
+                     </table>
+                     
+                </div>
+            </div>
+          </div>
+        </main>
+      </div>  
+    </div>
+
+  <!-- Add Modal -->
+<div class="modal fade" id="addSpeciesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Species</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form #addForm="ngForm" (ngSubmit)="onAddSpecies(addForm)">
+          <div class="form-group">
+            <label for="LocalName">LocalName</label>
+            <input type="text" ngModel name="localname" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter LocalName">
+          </div>
+
+          <div class="form-group">
+            <label for="ScientificName">ScientificName</label>
+            <input type="text" ngModel name="ScientificName" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter ScientificName">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Color</label>
+            <input type="text" ngModel name="Color" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter Color">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">LifeSpan</label>
+            <input type="email" ngModel name="LifeSpan" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter LifeSpan">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateSpeciesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Species</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">LocalName</label>
+              <input type="email" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter LocalName">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">ScientificName</label>
+              <input type="email" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter ScientificName">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Color</label>
+              <input type="email" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter Color">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">LifeSpan</label>
+              <input type="email" class="form-control" id="LocalName" aria-describedby="elocalName" placeholder="Enter LifeSpan">
+            </div>
+
+
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Delete Modal -->
+<div class="modal fade" id="deleteSpeciesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Species</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
